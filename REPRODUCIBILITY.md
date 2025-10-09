@@ -52,13 +52,26 @@ cp dnsmex/local_config.py.template dnsmex/local_config.py
 # Edit local_config.py to set DATA_DIR="/path/to/dasm-experiments-data"
 ```
 
-**Package Contents** (~3.9 MB uncompressed):
+**Package Contents** (~120 MB uncompressed):
+
+*Benchmark data (~3.9 MB)*:
 - `FLAb/data/binding/Koenig2017_g6_Kd.csv` - Koenig binding measurements
 - `FLAb/data/expression/Koenig2017_g6_er.csv` - Koenig expression measurements
 - `FLAb/data/binding/Shanehsazzadeh2023_trastuzumab_zero_kd.csv` - Shanehsazzadeh binding measurements
 - `Koenig2017_g6_er.progen.csv` - ProGen2 scores for Koenig dataset
 - `Shanehsazzadeh2023_trastuzumab_zero_kd.progen2-small.csv` - ProGen2 scores for Shanehsazzadeh dataset
-- `README.md` - Detailed documentation
+
+*Training data (~113 MB)*:
+- `v3/tang-deepshm-prod-NoWinCheck_igh_pcp_2024-10-29_MASKED_NI_ConsCys_no-naive_DXSMVALID.csv.gz` - Tang training data (38 MB)
+- `v3/wyatt-10x-1p5m_fs-all-NoWinCheck-UnmutInv-GTR-paired-merged_pcp_2024-11-21_DXSMVALID_no-naive_ConsCys_HL.csv.gz` - Jaffe training data (23 MB)
+- `v3/v3convert_vanwinkle-170-igk_pcp_2025-02-22_MASKED_NI_train_DXSMVALID_ConsCys_no-naive_downsample_500k_CONCAT_vanwinkle-170-igl_pcp_2025-02-25_MASKED_NI_train_DXSMVALID_ConsCys_no-naive_downsample_500k.csv.gz` - Van Winkle training data (52 MB)
+
+*Rodriguez perplexity data (~2.8 MB)*:
+- `v3/rodriguez-airr-seq-race-prod-NoWinCheck_igh_pcp_2024-11-12_MASKED_NI_noN_no-naive.csv.gz` - Rodriguez PCP data (1.7 MB)
+- `loris/rodriguez-igm/W-117_PRCONS-IGM_igblast.tsv` - Rodriguez IgBlast annotations (1.1 MB)
+
+*Documentation*:
+- `README.md` - Detailed documentation with citations
 
 **Original Sources**:
 - Base FLAb data: https://github.com/Graylab/FLAb (commit [67738ee](https://github.com/Graylab/FLAb/tree/67738eea4841a1777b73609d56ddfa39de8d7360), April 17, 2024)
@@ -66,18 +79,7 @@ cp dnsmex/local_config.py.template dnsmex/local_config.py
 
 **Note**: The FLAb repository has continued to receive updates since the version we used. Our data is from the specific commit listed above to ensure reproducibility.
 
-#### Rodriguez Dataset (for perplexity analysis)
-- `DATA_DIR/loris/rodriguez-igm/W-117_PRCONS-IGM_igblast.tsv`
-- Via `pcp_df_of_nickname("v1rodriguez")`: `v3/rodriguez-airr-seq-race-prod-NoWinCheck_igh_pcp_2024-11-12_MASKED_NI_noN_no-naive.csv.gz`
-
-**Source**: Processed from Rodriguez et al. 2023 RACE-seq data
-
-#### Training Data (for data_summaries.ipynb)
-- Tang dataset: `v3/tang-deepshm-prod-NoWinCheck_igh_pcp_2024-10-29_MASKED_NI_ConsCys_no-naive_DXSMVALID.csv.gz`
-- Jaffe paired dataset: `v3/wyatt-10x-1p5m_fs-all-NoWinCheck-UnmutInv-GTR-paired-merged_pcp_2024-11-21_DXSMVALID_no-naive_ConsCys_HL.csv.gz`
-- Van Winkle light chain dataset: `v3/v3convert_vanwinkle-170-igk_pcp_2025-02-22_MASKED_NI_train_DXSMVALID_ConsCys_no-naive_downsample_500k_CONCAT_vanwinkle-170-igl_pcp_2025-02-25_MASKED_NI_train_DXSMVALID_ConsCys_no-naive_downsample_500k.csv.gz`
-
-**Source**: These are processed parent-child pair (PCP) datasets generated from the raw BCR sequencing data using netam's preprocessing pipeline.
+All necessary data files (benchmark data, training data, and Rodriguez perplexity data) are included in the Zenodo package.
 
 ## 📦 Python Package Dependencies
 
@@ -211,16 +213,15 @@ cp dnsmex/local_config.py.template dnsmex/local_config.py
 ### External Data
 - [ ] Zenodo data package downloaded and extracted
 - [ ] DATA_DIR configured to point to extracted `dasm-experiments-data` directory
-- [ ] Rodriguez data available (if running perplexity analysis - not in Zenodo package)
-- [ ] Training PCP data available (if running data_summaries.ipynb - not in Zenodo package)
+- [ ] All data files present in DATA_DIR (benchmark, training, and Rodriguez data)
 
 ## ⚠️ Known Limitations
 
 ### Data Not Included in Repository
-Due to size constraints, the following are NOT included in this public repository:
-1. **Raw training data** (~2M parent-child pairs used to train the models)
-2. **FLAb benchmark datasets** (publicly available from FLAb repository)
-3. **Rodriguez RACE-seq processed data** (large processed dataset)
+Due to size constraints, the following are NOT included in this public GitHub repository but are available in the Zenodo data package:
+1. **Training data** (~113 MB of parent-child pairs used to train the models)
+2. **FLAb benchmark datasets** (~3.9 MB, publicly available from FLAb repository)
+3. **Rodriguez RACE-seq processed data** (~2.8 MB for perplexity analysis)
 
 ### Figures Requiring thrifty-experiments-1
 - Figure S7 (`fig:hc` - multihit model exploration) is made in the separate `thrifty-experiments-1` repository
