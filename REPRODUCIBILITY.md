@@ -31,18 +31,38 @@ This document provides a comprehensive checklist to ensure all files and depende
 
 ## ⚠️ External Data Dependencies
 
-### Data Files NOT in Repository (users must configure)
-The following data files are referenced via `localify()` in `dnsmex/local_config.py` and must be obtained separately:
+### Data Files NOT in Repository (download from Zenodo)
 
-#### FLAb Benchmark Data
-- `DATA_DIR/FLAb/data/binding/Koenig2017_g6_Kd.csv` - Koenig binding data
-- `DATA_DIR/FLAb/data/expression/Koenig2017_g6_er.csv` - Koenig expression data
-- `DATA_DIR/Koenig2017_g6_er.progen.csv` - ProGen2 scores for Koenig (generated using `scripts/flab_progen.py`)
-- `DATA_DIR/Shanehsazzadeh2023_trastuzumab_zero_kd.progen2-small.csv` - ProGen2 scores for Shanehsazzadeh (generated using `scripts/flab_progen.py`)
+The following data files are available as a separate download from Zenodo and must be configured locally:
 
-**Source**:
-- Base data: Download from FLAb benchmark repository at https://github.com/Graylab/FLAb
-- ProGen2 scores: Generate using the ProGen2 environment (see ProGen2 section below) or request pre-computed files
+#### Zenodo Data Package: `dasm-experiments-data`
+
+**Zenodo DOI**: [To be added upon upload]
+
+**Download and Setup**:
+```bash
+# 1. Download from Zenodo
+wget https://zenodo.org/record/[RECORD_ID]/files/dasm-experiments-data.zip
+
+# 2. Extract to your preferred location
+unzip dasm-experiments-data.zip
+
+# 3. Configure path in dnsmex/local_config.py
+cp dnsmex/local_config.py.template dnsmex/local_config.py
+# Edit local_config.py to set DATA_DIR="/path/to/dasm-experiments-data"
+```
+
+**Package Contents** (~3.9 MB uncompressed):
+- `FLAb/data/binding/Koenig2017_g6_Kd.csv` - Koenig binding measurements
+- `FLAb/data/expression/Koenig2017_g6_er.csv` - Koenig expression measurements
+- `FLAb/data/binding/Shanehsazzadeh2023_trastuzumab_zero_kd.csv` - Shanehsazzadeh binding measurements
+- `Koenig2017_g6_er.progen.csv` - ProGen2 scores for Koenig dataset
+- `Shanehsazzadeh2023_trastuzumab_zero_kd.progen2-small.csv` - ProGen2 scores for Shanehsazzadeh dataset
+- `README.md` - Detailed documentation
+
+**Original Sources**:
+- Base FLAb data: https://github.com/Graylab/FLAb
+- ProGen2 scores: Generated using `scripts/flab_progen.py` (included for convenience)
 
 #### Rodriguez Dataset (for perplexity analysis)
 - `DATA_DIR/loris/rodriguez-igm/W-117_PRCONS-IGM_igblast.tsv`
@@ -187,9 +207,10 @@ The following data files are referenced via `localify()` in `dnsmex/local_config
 - [ ] FIGURES_DIR path exists (or will be created)
 
 ### External Data
-- [ ] FLAb benchmark data downloaded and placed in DATA_DIR
-- [ ] Rodriguez data available (if running perplexity analysis)
-- [ ] Training PCP data available (if running data_summaries.ipynb)
+- [ ] Zenodo data package downloaded and extracted
+- [ ] DATA_DIR configured to point to extracted `dasm-experiments-data` directory
+- [ ] Rodriguez data available (if running perplexity analysis - not in Zenodo package)
+- [ ] Training PCP data available (if running data_summaries.ipynb - not in Zenodo package)
 
 ## ⚠️ Known Limitations
 
