@@ -181,7 +181,7 @@ The following data files are referenced via `localify()` in `dnsmex/local_config
 ## ⚠️ Known Limitations
 
 ### Data Not Included in Repository
-Due to size constraints, the following are NOT included:
+Due to size constraints, the following are NOT included in this public repository:
 1. **Raw training data** (~2M parent-child pairs used to train the models)
 2. **FLAb benchmark datasets** (publicly available from FLAb repository)
 3. **Rodriguez RACE-seq processed data** (large processed dataset)
@@ -235,4 +235,4 @@ Frederick A. Matsen IV, Will Dumm, Kevin Sung, Mackenzie M. Johnson, David Rich,
 ---
 
 **Last Updated**: 2025-10-09
-**Repository**: https://github.com/matsengrp/dasm-experiments (private during review)
+**Repository**: https://github.com/matsengrp/dasm-experiments

@@ -4,8 +4,6 @@ This repository contains the code and data for reproducing the results presented
 
 **"Separating mutation from selection in antibody language models"** by Frederick A. Matsen IV, Will Dumm, Kevin Sung, Mackenzie M. Johnson, David Rich, Tyler Starr, Yun S. Song, Julia Fukuyama, Hugh K. Haddox
 
-**For peer reviewers: this repository will be opened to the public after the paper is accepted. We provide a version of the repository as a `.tar.gz` file for the purposes of peer review.**
-
 ## Installation
 
 First follow the instructions to do a developer install of [netam](https://github.com/matsengrp/netam) into a virtual environment (`venv` or `conda` both work).
