@@ -42,10 +42,10 @@ The following data files are available as a separate download from Zenodo and mu
 **Download and Setup**:
 ```bash
 # 1. Download from Zenodo
-wget https://zenodo.org/record/[RECORD_ID]/files/dasm-experiments-data.zip
+wget https://zenodo.org/record/[RECORD_ID]/files/dasm-experiments-data.tar.gz
 
 # 2. Extract to your preferred location
-unzip dasm-experiments-data.zip
+tar -xzf dasm-experiments-data.tar.gz
 
 # 3. Configure path in dnsmex/local_config.py
 cp dnsmex/local_config.py.template dnsmex/local_config.py
