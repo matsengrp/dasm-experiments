@@ -1,0 +1,4 @@
+Model,Top-5 Enrichment,Top-10 Enrichment,Top-25 Enrichment
+DASM,1.90x,2.14x,2.28x
+ESM,0.00x,0.00x,0.38x
+ABLANG,0.00x,0.00x,0.00x

@@ -1,0 +1,40 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="dnsmex",
+    version="0.1.0",
+    url="https://github.com/matsengrp/dnsm-experiments-1.git",
+    author="Matsen Group",
+    author_email="ematsen@gmail.com",
+    description="Accessory code to train and evaluate deep natural selection models.",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    packages=find_packages(),
+    install_requires=[
+        "altair",
+        "fire",
+        "ipykernel",
+        "ipywidgets",
+        "logomaker",
+        "pypdf",
+        "scikit-learn",
+        "scipy",
+        "seaborn",
+        "statsmodels",
+        "tensorboard",
+        "umap-learn",
+        "tbparse",
+        "pyyaml",
+        "ete3",
+    ],
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
+        "Programming Language :: Python :: 3.9",
+    ],
+    entry_points={
+        "console_scripts": ["dnsm=dnsmex.dnsm_zoo:main", "dnsmex=dnsmex.cli:main"],
+    },
+)

@@ -1,0 +1,121 @@
+import os
+import random
+import time
+import yaml
+
+import matplotlib.pyplot as plt
+
+from netam.framework import crepe_exists
+from dnsmex.dxsm_zoo import trained_model_str, trained_model_path
+from dnsmex.util import merge_pdfs
+
+configfile: "config.yml"
+
+model_type = config["model_type"]
+
+train_model = __import__(f"dnsmex.{model_type}_zoo", fromlist=["train_model"]).train_model
+write_branch_lengths = __import__(f"dnsmex.{model_type}_zoo", fromlist=["write_branch_lengths"]).write_branch_lengths
+write_sites_oe = __import__(f"dnsmex.{model_type}_oe", fromlist=["write_sites_oe"]).write_sites_oe
+
+model_names = config["model_names"]
+train_data_nicknames = config["train_data_nicknames"]
+test_data_nicknames = config["test_data_nicknames"]
+training_methods = config["training_methods"]
+min_log_prob = config["min_log_prob"]
+
+final_output_path = "_ignore/model_compare.csv"
+final_fig_path = "_ignore/model_compare.pdf"
+
+model_enumeration = {model: i for i, model in enumerate(model_names)}
+
+def gpu_preference_of_model_name(model_name):
+    if "gpu_preference" in config:
+        return config["gpu_preference"] 
+    return model_enumeration[model_name]
+
+
+def trained_model_yml(model_name, data_nickname, training_method):
+    return f"{trained_model_path(model_name, data_nickname, training_method)}.yml"
+
+
+def test_branch_length_path(model_name, data_nickname, training_method, dataset_name):
+    trained_model = trained_model_str(model_name, data_nickname, training_method)
+    # Snakemake was having trouble with branch_lengths.csv (recursively matching the rule)
+    # so we use branch_lengths_csv instead.
+    return f"_ignore/test_output/{trained_model}-ON-{dataset_name}.branch_lengths_csv"
+
+
+def test_something_path(model_name, data_nickname, training_method, dataset_name, suffix):
+    trained_model = trained_model_str(model_name, data_nickname, training_method)
+    return f"_ignore/test_output/{trained_model}-ON-{dataset_name}.{suffix}"
+
+
+rule all:
+    input: final_output_path, final_fig_path
+
+
+rule train_model:
+    output:
+        trained_model=trained_model_yml("{model_name}", "{data_nickname}", "{training_method}")
+    run:
+        train_model(wildcards.model_name, wildcards.data_nickname, wildcards.training_method, gpu_preference=gpu_preference_of_model_name(wildcards.model_name))
+
+
+rule write_test_branch_lengths:
+    input:
+        trained_model=trained_model_yml("{model_name}", "{data_nickname}", "{training_method}")
+    output:
+        test_bls=test_branch_length_path("{model_name}", "{data_nickname}", "{training_method}", "{dataset_name}")
+    run:
+        crepe_prefix = os.path.splitext(input.trained_model)[0]
+        write_branch_lengths(crepe_prefix, wildcards.dataset_name, output.test_bls)
+
+
+rule write_oe:
+    input:
+        trained_model=trained_model_yml("{model_name}", "{data_nickname}", "{training_method}"),
+        test_bls=test_branch_length_path("{model_name}", "{data_nickname}", "{training_method}", "{dataset_name}"),
+    output:
+        test_fig=test_something_path("{model_name}", "{data_nickname}", "{training_method}", "{dataset_name}", "pdf"),
+        test_output=test_something_path("{model_name}", "{data_nickname}", "{training_method}", "{dataset_name}", "csv")
+    run:
+        crepe_prefix = os.path.splitext(input.trained_model)[0]
+        plt.switch_backend("Agg")
+        write_sites_oe(
+            crepe_prefix=crepe_prefix,
+            dataset_name=wildcards.dataset_name,
+            branch_length_path=input.test_bls,
+            csv_output_path=output.test_output,
+            fig_out_path=output.test_fig,
+            min_log_prob=min_log_prob,
+        )
+
+
+rule concatenate_csvs:
+    input:
+        csvs = [
+            test_something_path(m, d, tm, td, "csv")
+                for m in model_names
+                for d in train_data_nicknames
+                for tm in training_methods
+                for td in test_data_nicknames],
+    output:
+        combined_csv = final_output_path
+    shell:
+        """
+        netam concatenate_csvs $(echo '{input.csvs}' | tr ' ' ',') {output.combined_csv}
+        """
+
+rule concatenate_figs:
+    input:
+        figs = [
+            test_something_path(m, d, tm, td, "pdf")
+                for m in model_names
+                for d in train_data_nicknames
+                for tm in training_methods
+                for td in test_data_nicknames]
+    output:
+        combined_fig = final_fig_path
+    run:
+        merge_pdfs(input.figs, output.combined_fig)
+

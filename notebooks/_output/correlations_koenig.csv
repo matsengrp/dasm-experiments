@@ -1,0 +1,9 @@
+Dataset,Model,Correlation
+Koenig G6 Binding,AbLang2,-0.031705420277460775
+Koenig G6 Binding,ESM,-0.0007580278802086786
+Koenig G6 Binding,ProGen2,0.1560679289037151
+Koenig G6 Binding,DASM,0.30118508875705713
+Koenig G6 Expression,AbLang2,0.344136456087577
+Koenig G6 Expression,ESM,0.4179138931972321
+Koenig G6 Expression,ProGen2,0.5593402863044538
+Koenig G6 Expression,DASM,0.6721760060385494

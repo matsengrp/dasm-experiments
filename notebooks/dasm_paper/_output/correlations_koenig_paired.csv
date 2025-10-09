@@ -1,0 +1,17 @@
+Dataset,Model,Correlation,Chain
+Expression,AbLang2,0.344136456087577,heavy
+Expression,DASM,0.6878287180573447,heavy
+Expression,ESM,0.4179138931972321,heavy
+Expression,ProGen2,0.5593402863044538,heavy
+Binding,DASM,0.3352627480541238,heavy
+Binding,ESM,-0.0007580278802086786,heavy
+Binding,ProGen2,0.1560679289037151,heavy
+Binding,AbLang2,-0.031705420277460775,heavy
+Expression,DASM,0.6740499546193356,light
+Expression,ESM,0.5241253835444097,light
+Expression,ProGen2,0.5675323953014826,light
+Expression,AbLang2,0.08444704608637127,light
+Binding,DASM,0.3163706360448029,light
+Binding,ESM,0.3076537160252743,light
+Binding,ProGen2,0.2756007542973865,light
+Binding,AbLang2,0.04869389771228892,light

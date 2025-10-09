@@ -1,0 +1,31 @@
+model_type: "dasm"
+# model_names: ["single"]
+model_names: ["single", "dasm_1m", "dasm_4m", "dasm_7m", "dasm_8m"]
+# model_names: ["single", "dasm_13k", "dasm_77k", "dasm_1m", "dasm_4m"]
+# train_data_nicknames: ["v1jaffeCC+v1tangCC+v1vanwinkleheavyTrainCC"]
+train_data_nicknames: ["v1tangCC+v1vanwinkleheavyTrainCC+v1jaffePairedCC+v1vanwinklelightTrainCC1m"]
+# train_data_nicknames: [
+#   "v1tangCC+v1vanwinkleheavyTrainCC+v1jaffePairedCC+v1vanwinklelightTrainCC1m",
+#   "heavyDasmPairedSim40k+pairedDasmPairedSim11k+lightDasmPairedSim52k",
+#   "heavyDasmPairedSim100k+pairedDasmPairedSim27k+lightDasmPairedSim130k",
+#   "heavyDasmPairedSim201k+pairedDasmPairedSim54k+lightDasmPairedSim260k",
+#   "heavyDasmPairedSim402k+pairedDasmPairedSim108k+lightDasmPairedSim518k",
+# ]
+# train_data_nicknames: ["v1jaffeCC50k", "jaffeDasm1SimCC50k", "jaffeDasm2SimCC50k", "jaffeDasm3SimCC50k", "jaffeDasm4SimCC50k"]
+# train_data_nicknames: ["v1tang50k", "v1tang", "v1tangCC", "v1jaffe+v1tang", "v1jaffeCC+v1tangCC"]
+# train_data_nicknames: ["v1jaffe+v1tang"]
+
+# train_data_nicknames: ["v1jaffe+v1tang", "v1tang+v1rodriguez", "v1jaffePaired"]
+
+# train_data_nicknames: ["v1tangWithN+v1rodriguezPrimersWithN+v1jaffe"]
+
+# train_data_nicknames: ["v1tangWithN+v1rodriguezWithN"]
+# train_data_nicknames: ["v1tangWithN","v1rodriguezWithN","v1rodriguezPrimersWithN"]
+# train_data_nicknames: ["v1rodriguezPrimersWithN"]
+# train_data_nicknames: ["v1tang50k","v1tang"]
+#train_data_nicknames: ["v1tang50k","v1tang","v1jaffe+v1tang"]
+# test_data_nicknames: ["v1vanwinkleheavyTestCC", "v1rodriguezCC", "v1vanwinkleigkTestCC", "v1vanwinkleiglTestCC"]
+# test_data_nicknames: ["v1rodriguezCC", "rodriguezDasmPairedSim", "vanwinkleigkTestDasmPairedSim", "vanwinkleiglTestDasmPairedSim"]
+test_data_nicknames: ["v1rodriguezCC"]
+training_methods: ["joint"]
+min_log_prob: -4

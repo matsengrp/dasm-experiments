@@ -1,0 +1,35 @@
+"""Local configuration template for dnsm-experiments-1.
+
+Copy this file to local-config.py and customize the values below for your local setup.
+
+    cp dnsmex/local-config.py.template dnsmex/local-config.py
+
+Then edit dnsmex/local-config.py to match your local paths and remote server setup.
+"""
+
+import os
+
+CONFIG = {
+    # Data and output directories
+    "DATA_DIR": "~/data",
+    "MISC": "~/data/misc",
+    "SABDAB": "~/sabdab",
+    "FIGURES_DIR": "~/writing/talks/figures/bcr-mut-sel/",
+    # Trained model directories
+    "DNSM_TRAINED_MODELS_DIR": "~/re/dnsm-experiments-1/dnsm-train/trained_models",
+    "DDSM_TRAINED_MODELS_DIR": "~/re/dnsm-experiments-1/ddsm-train/trained_models",
+    "DASM_TRAINED_MODELS_DIR": "~/re/dnsm-experiments-1/dasm-train/trained_models",
+    "DASM_UPDATED_MODELS_DIR": "~/re/dnsm-experiments-1/dasm-update/trained_models",
+    # Test output directories
+    "DNSM_TEST_OUTPUT_DIR": "~/re/dnsm-experiments-1/dnsm-train/_ignore/test_output",
+    "DDSM_TEST_OUTPUT_DIR": "~/re/dnsm-experiments-1/ddsm-train/_ignore/test_output",
+    "DASM_TEST_OUTPUT_DIR": "~/re/dnsm-experiments-1/dasm-train/_ignore/test_output",
+    # Grid search directories
+    "DASM_GRID_DIR": "~/re/dnsm-experiments-1/dasm-grid/trained_models",
+    "DNSM_GRID_DIR": "~/re/dnsm-experiments-1/dnsm-grid/trained_models",
+    "DDSM_GRID_DIR": "~/re/dnsm-experiments-1/ddsm-grid/trained_models",
+    # Remote training configuration
+    "REMOTE_HOST": "ermine",
+    "REMOTE_DIR": "/home/matsen/re/dnsm-experiments-1",
+    "REMOTE_VENV_PATH": "../netam/.venv/bin/activate",
+}
