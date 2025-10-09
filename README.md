@@ -27,17 +27,26 @@ If you are training models with parallel branch length optimization, we suggest 
 This will avoid `OSError: [Errno 24] Too many open files` triggered by the `multiprocessing` module.
 You will need to do this in every shell that you are using for training models, or put it in a login `.*rc` file.
 
-## MAGMA-seq Analysis Pipeline
+## Reproducing Manuscript Results
 
-This repository includes a complete analysis pipeline for MAGMA-seq antibody datasets (Kirby et al. 2025, Petersen et al. 2024):
+All analyses for the manuscript can be found in the locations listed below. For detailed setup and dependencies, see [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md).
 
-- **Unified dataset**: Sequences from 6 antibody systems (Kirby + Petersen datasets)
-- **Model scoring**: DASM, ESM2, AbLang2, and ProGen2 predictions for all sequences
-- **Interactive visualization**: Complete mutation tree analysis with binding affinity data
+### Main Analyses (in `notebooks/dasm_paper/`)
+- **Nucleotide process in language models** → [`nt_process_in_llms.ipynb`](notebooks/dasm_paper/nt_process_in_llms.ipynb) (Figure 1)
+- **Koenig et al. binding/expression benchmarks** → [`koenig.ipynb`](notebooks/dasm_paper/koenig.ipynb) (Table 1, Figures 2, S1-S5)
+- **Perplexity comparison on natural sequences** → [`perplexity.ipynb`](notebooks/dasm_paper/perplexity.ipynb) (Figure 3)
+- **Shanehsazzadeh et al. benchmarks** → [`shanehsazzadeh.ipynb`](notebooks/dasm_paper/shanehsazzadeh.ipynb) (Table 2, Figure S6)
+- **Dataset summaries** → [`data_summaries.ipynb`](notebooks/dasm_paper/data_summaries.ipynb) (Table S1)
 
-For detailed documentation, see [`data/whitehead/MAGMA_PIPELINE_STRUCTURE.md`](data/whitehead/MAGMA_PIPELINE_STRUCTURE.md).
+### MAGMA-seq Analysis Pipeline
+- **MAGMA-seq correlation analysis** → [`data/whitehead/MAGMA_PIPELINE_STRUCTURE.md`](data/whitehead/MAGMA_PIPELINE_STRUCTURE.md) (Figures S7, Table S2)
+- Includes unified dataset of 1,128 sequences from 6 antibody systems (Kirby et al. 2025, Petersen et al. 2024)
+- Scripts in `scripts/magma_*.py` for data processing and model comparison
+
+### Timing Benchmarks
+- **Model timing comparison** → [`scripts/timing_direct_gpu.py`](scripts/timing_direct_gpu.py) and [`scripts/make_timing_table.py`](scripts/make_timing_table.py) (Table 3)
 
 ## Visualizations
 
-Please see <https://matsen.group/dasm-viz/v1/> for visualizations of DASM selection factors for all of the antibodies in the [SAbDab](https://opig.stats.ox.ac.uk/webapps/sabdab-sabpred/sabdab).
+Interactive visualizations of DASM selection factors for all antibodies in [SAbDab](https://opig.stats.ox.ac.uk/webapps/sabdab-sabpred/sabdab) are available at <https://matsen.group/dasm-viz/v1/>.
 (Thank you to OPIG for this resource, and to Will Hannon of the Bloom lab for writing [dms-viz](https://dms-viz.github.io/).)
