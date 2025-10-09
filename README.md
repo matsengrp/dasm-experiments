@@ -44,6 +44,23 @@ All analyses for the manuscript can be found in the locations listed below. For 
 ### Timing Benchmarks
 - **Model timing comparison** → [`scripts/timing_direct_gpu.py`](scripts/timing_direct_gpu.py) and [`scripts/make_timing_table.py`](scripts/make_timing_table.py) (Table 3)
 
+## Data Sources
+
+This work uses benchmark and training data from the following sources:
+
+**Benchmark datasets**:
+- [Koenig et al. (2017)](http://dx.doi.org/10.1073/pnas.1613231114) - Anti-VEGF antibody deep mutational scanning
+- [Shanehsazzadeh et al. (2023)](https://www.biorxiv.org/content/10.1101/2023.01.08.523187v4) - Trastuzumab binding data from generative models
+- [Petersen et al. (2024)](https://www.nature.com/articles/s41467-024-48072-z) - MAGMA-seq data (2 antibody systems)
+- [Kirby et al. (2025)](https://www.pnas.org/doi/abs/10.1073/pnas.2412787122) - MAGMA-seq data (4 antibody systems, SARS-CoV-2)
+
+**Training datasets**:
+- [Tang et al. (2022)](http://dx.doi.org/10.1016/j.isci.2021.103668) - DeepSHM heavy chain sequences
+- [Engelbrecht et al. (2025)](https://www.biorxiv.org/content/10.1101/2025.05.28.656470v1.abstract) - Heavy and light chain sequences (kappa and lambda)
+- [Rodriguez et al. (2023)](https://www.nature.com/articles/s41467-023-40070-x) - RACE-seq data for perplexity analysis
+
+See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for complete data provenance and download instructions.
+
 ## Visualizations
 
 Interactive visualizations of DASM selection factors for all antibodies in [SAbDab](https://opig.stats.ox.ac.uk/webapps/sabdab-sabpred/sabdab) are available at <https://matsen.group/dasm-viz/v1/>.

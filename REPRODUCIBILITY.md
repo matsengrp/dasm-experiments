@@ -1,6 +1,6 @@
 # Reproducibility Checklist for DASM Experiments
 
-This document provides a comprehensive checklist to ensure all files and dependencies are present for reproducing the results in the DASM manuscript.
+This document ensures all files and dependencies are present for reproducing the DASM manuscript results.
 
 ## ✅ Core Files Verification
 
@@ -29,13 +29,9 @@ This document provides a comprehensive checklist to ensure all files and depende
 - [x] `whitehead/petersen/` → Petersen et al. 2024 data (2 antibody systems)
 - [x] `sabdab_summary_2024-01-26_abid_info_resnums.tsv.gz` → SAbDab data for visualization
 
-## ⚠️ External Data Dependencies
+## 📦 External Data (Zenodo)
 
-### Data Files NOT in Repository (download from Zenodo)
-
-The following data files are available as a separate download from Zenodo and must be configured locally:
-
-#### Zenodo Data Package: `dasm-experiments-data`
+Due to size constraints (~128 MB), benchmark data, training data, and Rodriguez perplexity data are distributed separately via Zenodo.
 
 **Zenodo DOI**: [To be added upon upload]
 
@@ -52,219 +48,109 @@ cp dnsmex/local_config.py.template dnsmex/local_config.py
 # Edit local_config.py to set DATA_DIR="/path/to/dasm-experiments-data"
 ```
 
-**Package Contents** (~120 MB uncompressed):
+**Package Contents** (~128 MB uncompressed):
 
 *Benchmark data (~3.9 MB)*:
 - `FLAb/data/binding/Koenig2017_g6_Kd.csv` - Koenig binding measurements
 - `FLAb/data/expression/Koenig2017_g6_er.csv` - Koenig expression measurements
-- `FLAb/data/binding/Shanehsazzadeh2023_trastuzumab_zero_kd.csv` - Shanehsazzadeh binding measurements
-- `Koenig2017_g6_er.progen.csv` - ProGen2 scores for Koenig dataset
-- `Shanehsazzadeh2023_trastuzumab_zero_kd.progen2-small.csv` - ProGen2 scores for Shanehsazzadeh dataset
+- `FLAb/data/binding/Shanehsazzadeh2023_trastuzumab_zero_kd.csv` - Shanehsazzadeh binding
+- `Koenig2017_g6_er.progen.csv` - ProGen2 scores (Koenig)
+- `Shanehsazzadeh2023_trastuzumab_zero_kd.progen2-small.csv` - ProGen2 scores (Shanehsazzadeh)
 
-*Training data (~113 MB)*:
-- `v3/tang-deepshm-prod-NoWinCheck_igh_pcp_2024-10-29_MASKED_NI_ConsCys_no-naive_DXSMVALID.csv.gz` - Tang training data (38 MB)
-- `v3/wyatt-10x-1p5m_fs-all-NoWinCheck-UnmutInv-GTR-paired-merged_pcp_2024-11-21_DXSMVALID_no-naive_ConsCys_HL.csv.gz` - Jaffe training data (23 MB)
-- `v3/v3convert_vanwinkle-170-igk_pcp_2025-02-22_MASKED_NI_train_DXSMVALID_ConsCys_no-naive_downsample_500k_CONCAT_vanwinkle-170-igl_pcp_2025-02-25_MASKED_NI_train_DXSMVALID_ConsCys_no-naive_downsample_500k.csv.gz` - Van Winkle training data (52 MB)
+*Training data (~121 MB)*:
+- `v3/tang-deepshm-prod-NoWinCheck_igh_pcp_2024-10-29_MASKED_NI_ConsCys_no-naive_DXSMVALID.csv.gz` (38 MB)
+- `v3/v3convert_vanwinkle-170-igh_pcp_2025-03-05_MASKED_NI_train_no-naive_DXSMVALID_ConsCys.csv.gz` (8.3 MB)
+- `v3/wyatt-10x-1p5m_fs-all-NoWinCheck-UnmutInv-GTR-paired-merged_pcp_2024-11-21_DXSMVALID_no-naive_ConsCys_HL.csv.gz` (23 MB)
+- `v3/v3convert_vanwinkle-170-igk_pcp_2025-02-22_MASKED_NI_train_DXSMVALID_ConsCys_no-naive_downsample_500k_CONCAT_vanwinkle-170-igl_pcp_2025-02-25_MASKED_NI_train_DXSMVALID_ConsCys_no-naive_downsample_500k.csv.gz` (52 MB)
 
 *Rodriguez perplexity data (~2.8 MB)*:
-- `v3/rodriguez-airr-seq-race-prod-NoWinCheck_igh_pcp_2024-11-12_MASKED_NI_noN_no-naive.csv.gz` - Rodriguez PCP data (1.7 MB)
-- `loris/rodriguez-igm/W-117_PRCONS-IGM_igblast.tsv` - Rodriguez IgBlast annotations (1.1 MB)
+- `v3/rodriguez-airr-seq-race-prod-NoWinCheck_igh_pcp_2024-11-12_MASKED_NI_noN_no-naive.csv.gz` (1.7 MB)
+- `loris/rodriguez-igm/W-117_PRCONS-IGM_igblast.tsv` (1.1 MB)
 
 *Documentation*:
 - `README.md` - Detailed documentation with citations
 
-**Original Sources**:
-- Base FLAb data: https://github.com/Graylab/FLAb (commit [67738ee](https://github.com/Graylab/FLAb/tree/67738eea4841a1777b73609d56ddfa39de8d7360), April 17, 2024)
-- ProGen2 scores: Generated using `scripts/flab_progen.py` (included for convenience)
+**Note**: FLAb data is from commit [67738ee](https://github.com/Graylab/FLAb/tree/67738eea4841a1777b73609d56ddfa39de8d7360) (April 17, 2024). The FLAb repository has continued to receive updates; we use this specific commit for reproducibility.
 
-**Note**: The FLAb repository has continued to receive updates since the version we used. Our data is from the specific commit listed above to ensure reproducibility.
+## 🔧 Python Dependencies
 
-All necessary data files (benchmark data, training data, and Rodriguez perplexity data) are included in the Zenodo package.
-
-## 📦 Python Package Dependencies
-
-### Core Dependencies (from netam)
-- `torch` (PyTorch)
-- `numpy`
-- `pandas`
-- `matplotlib`
-- `seaborn`
-- `biopython`
-- `scipy`
-- `scikit-learn`
+### Core Dependencies
+- `torch`, `numpy`, `pandas`, `matplotlib`, `seaborn`, `biopython`, `scipy`, `scikit-learn`
 
 ### External Model Packages
-- **AbLang2**: Required by `dnsmex.ablang_wrapper.AbLangWrapper`
-  - Install: `pip install ablang2`
-  - Used in: nt_process_in_llms, koenig, perplexity, shanehsazzadeh
+- **AbLang2**: `pip install ablang2` (used in: nt_process_in_llms, koenig, perplexity, shanehsazzadeh)
+- **ESM**: `pip install fair-esm` (used in: koenig, shanehsazzadeh, timing scripts)
+- **ProGen2** (optional): Requires separate environment with old dependencies
+  - Pre-computed scores included in Zenodo package - **you can skip ProGen2 setup**
+  - To generate new scores: See [`scripts/README_progen_setup.md`](scripts/README_progen_setup.md)
 
-- **ESM (Evolutionary Scale Modeling)**: Required by `dnsmex.esm_wrapper.esm2_wrapper_of_size`
-  - Install: `pip install fair-esm`
-  - Used in: koenig, shanehsazzadeh, timing scripts
+## 🚀 Quick Start
 
-- **ProGen2**: Required for ProGen2 benchmarks
-  - **⚠️ IMPORTANT**: ProGen2 requires a separate Python environment due to incompatible dependencies
-  - Full setup instructions: [`scripts/README_progen_setup.md`](scripts/README_progen_setup.md)
-  - Quick setup (on GPU server):
-    ```bash
-    bash ~/re/dasm-experiments/scripts/setup_progen_env.sh
-    bash ~/re/dasm-experiments/scripts/setup_progen_scripts.sh
-    ```
-  - Creates isolated venv at `~/progen2/.venv` with old PyTorch/transformers versions
-  - Pre-computed ProGen2 scores are included in the repository for:
-    - `DATA_DIR/Koenig2017_g6_er.progen.csv`
-    - `DATA_DIR/Shanehsazzadeh2023_trastuzumab_zero_kd.progen2-small.csv`
-  - You can skip ProGen2 setup if using pre-computed scores
-  - To generate new scores: Use `scripts/flab_progen.py` in the ProGen2 environment
+1. **Install dependencies**:
+   ```bash
+   # Install netam in developer mode (in netam directory)
+   pip install -e .
 
-### Optional Dependencies
-- `tqdm` (progress bars)
-- `altair` (alternative plotting, for some notebooks)
+   # Install this package
+   cd dasm-experiments
+   make install
 
-## 🔧 Configuration Setup
+   # Install external model packages
+   pip install ablang2 fair-esm
+   ```
 
-### Required Configuration Steps
-
-1. **Copy the local config template**:
+2. **Configure paths**:
    ```bash
    cp dnsmex/local_config.py.template dnsmex/local_config.py
+   # Edit local_config.py:
+   #   DATA_DIR = "/path/to/dasm-experiments-data"
+   #   FIGURES_DIR = "/path/to/output/figures"
+   #   DASM_TRAINED_MODELS_DIR = "dasm-train/trained_models"  # or absolute path
    ```
 
-2. **Edit `dnsmex/local_config.py`** to set your local paths:
-   ```python
-   CONFIG = {
-       "DATA_DIR": "~/data",  # Location of FLAb and other external data
-       "FIGURES_DIR": "~/writing/dasm-tex-1/figures/",  # Output for figures
-       "DASM_TRAINED_MODELS_DIR": "~/re/dasm-experiments/dasm-train/trained_models",
-       # ... etc
-   }
-   ```
+3. **Download Zenodo data** (see External Data section above)
 
-3. **Key paths to configure**:
-   - `DATA_DIR`: Root directory containing FLAb benchmark data and Rodriguez data
-   - `FIGURES_DIR`: Where figure outputs will be saved (typically manuscript figures directory)
-   - `DASM_TRAINED_MODELS_DIR`: Location of trained DASM models (can use relative path to this repo)
-
-## 🚀 Running the Experiments
-
-### Prerequisites
-1. Install netam in developer mode
-2. Install this package: `make install` from the repository root
-3. Configure `dnsmex/local_config.py` as described above
-4. Obtain external data files and place them in `DATA_DIR`
-
-### Recommended Order
-
-1. **Model availability check**:
+4. **Run analyses**:
    ```bash
-   ls dasm-train/trained_models/*.pth
-   # Should show 2 model files
-   ```
+   # Verify models present
+   ls dasm-train/trained_models/*.pth  # Should show 2 files
 
-2. **Run notebooks** (in `notebooks/dasm_paper/`):
-   ```bash
-   jupyter notebook
-   # Open and run each notebook in order:
+   # Run notebooks in order
+   jupyter notebook notebooks/dasm_paper/
    # - nt_process_in_llms.ipynb
    # - koenig.ipynb
    # - perplexity.ipynb
    # - shanehsazzadeh.ipynb
    # - data_summaries.ipynb
-   ```
 
-3. **Run timing benchmarks**:
-   ```bash
-   # CPU timing
+   # Run timing benchmarks
    python scripts/timing_direct_gpu.py --device cpu --sequences 10
-
-   # GPU timing (if available)
-   python scripts/timing_direct_gpu.py --device gpu --sequences 100
-
-   # Generate timing table
    python scripts/make_timing_table.py
-   ```
 
-4. **MAGMA-seq analysis**:
-   ```bash
-   # See data/whitehead/MAGMA_PIPELINE_STRUCTURE.md for details
+   # MAGMA-seq analysis
    python scripts/magma_unified_model_correlation_analysis.py
    ```
 
-## 🔍 Verification Checklist
-
-### File Existence
-- [ ] All 5 key notebooks present in `notebooks/dasm_paper/`
-- [ ] Both DASM model files (.pth and .yml) present in `dasm-train/trained_models/`
-- [ ] MAGMA-seq data files present in `data/whitehead/`
-- [ ] Scripts `timing_direct_gpu.py` and `make_timing_table.py` present
-
-### Dependencies
-- [ ] netam installed in developer mode
-- [ ] dnsmex module importable (`python -c "import dnsmex"`)
-- [ ] AbLang2 installed (`python -c "from ablang import pretrained"`)
-- [ ] ESM installed (`python -c "import esm"`)
-- [ ] All Python package dependencies installed
-
-### Configuration
-- [ ] `dnsmex/local_config.py` created and configured
-- [ ] DATA_DIR path exists and contains FLAb data
-- [ ] FIGURES_DIR path exists (or will be created)
-
-### External Data
-- [ ] Zenodo data package downloaded and extracted
-- [ ] DATA_DIR configured to point to extracted `dasm-experiments-data` directory
-- [ ] All data files present in DATA_DIR (benchmark, training, and Rodriguez data)
-
-## ⚠️ Known Limitations
-
-### Data Not Included in Repository
-Due to size constraints, the following are NOT included in this public GitHub repository but are available in the Zenodo data package:
-1. **Training data** (~113 MB of parent-child pairs used to train the models)
-2. **FLAb benchmark datasets** (~3.9 MB, publicly available from FLAb repository)
-3. **Rodriguez RACE-seq processed data** (~2.8 MB for perplexity analysis)
-
-### Figures Requiring thrifty-experiments-1
-- Figure S7 (`fig:hc` - multihit model exploration) is made in the separate `thrifty-experiments-1` repository
-- Reference: `multihit_model_exploration.ipynb` in https://github.com/matsengrp/thrifty-experiments-1
-
 ## 📊 Expected Outputs
 
-### From Notebooks
-- Multiple SVG figures in FIGURES_DIR
+**From Notebooks**:
+- SVG figures in FIGURES_DIR
 - CSV files in `notebooks/dasm_paper/_output/`
 - Correlation tables and statistics
 
-### From Scripts
+**From Scripts**:
 - `data/whitehead/processed/timing_table.tex`
 - `data/whitehead/processed/direct_timing_results_*.csv`
 - `data/whitehead/processed/magma_correlation_table.tex`
 - `data/whitehead/processed/magma_unified_model_correlations.svg`
 
-## 🆘 Troubleshooting
+## ⚠️ Notes
 
-### Import Errors
-- Ensure netam is installed: `pip install -e .` in netam directory
-- Ensure this package is installed: `make install` in this directory
-- Check `dnsmex/local_config.py` exists
-
-### Missing Data Files
-- Verify paths in `dnsmex/local_config.py` are correct
-- Check that DATA_DIR contains the FLAb data structure
-- Use `localify()` function to debug path resolution
-
-### Model Loading Errors
-- Verify .pth and .yml files both exist for each model
-- Check that netam version is compatible
-- Ensure correct device (CPU/GPU) is available
-
-### Memory Issues
-- DASM models are small (~4M parameters) and should run on CPU
-- ESM2-650M may require GPU for reasonable performance
-- Consider reducing batch sizes in notebooks if needed
+- **Figure S7**: Multihit model exploration is in separate [`thrifty-experiments-1`](https://github.com/matsengrp/thrifty-experiments-1) repository
+- **Memory**: DASM models (~4M parameters) run on CPU; ESM2-650M benefits from GPU
+- **Troubleshooting**: Use `localify()` function to debug path resolution
 
 ## 📝 Citation
-
-If you use this code or data, please cite:
 
 **"Separating mutation from selection in antibody language models"**
 Frederick A. Matsen IV, Will Dumm, Kevin Sung, Mackenzie M. Johnson, David Rich, Tyler Starr, Yun S. Song, Julia Fukuyama, Hugh K. Haddox
