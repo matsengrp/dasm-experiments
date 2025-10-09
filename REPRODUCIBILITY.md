@@ -35,12 +35,14 @@ This document provides a comprehensive checklist to ensure all files and depende
 The following data files are referenced via `localify()` in `dnsmex/local_config.py` and must be obtained separately:
 
 #### FLAb Benchmark Data
-- `DATA_DIR/FLAb/data/binding/Koenig2017_g6_Kd.csv`
-- `DATA_DIR/FLAb/data/expression/Koenig2017_g6_er.csv`
-- `DATA_DIR/Koenig2017_g6_er.progen.csv`
-- `DATA_DIR/Shanehsazzadeh2023_trastuzumab_zero_kd.progen2-small.csv`
+- `DATA_DIR/FLAb/data/binding/Koenig2017_g6_Kd.csv` - Koenig binding data
+- `DATA_DIR/FLAb/data/expression/Koenig2017_g6_er.csv` - Koenig expression data
+- `DATA_DIR/Koenig2017_g6_er.progen.csv` - ProGen2 scores for Koenig (generated using `scripts/flab_progen.py`)
+- `DATA_DIR/Shanehsazzadeh2023_trastuzumab_zero_kd.progen2-small.csv` - ProGen2 scores for Shanehsazzadeh (generated using `scripts/flab_progen.py`)
 
-**Source**: Download from FLAb benchmark repository at https://github.com/Graylab/FLAb
+**Source**:
+- Base data: Download from FLAb benchmark repository at https://github.com/Graylab/FLAb
+- ProGen2 scores: Generate using the ProGen2 environment (see ProGen2 section below) or request pre-computed files
 
 #### Rodriguez Dataset (for perplexity analysis)
 - `DATA_DIR/loris/rodriguez-igm/W-117_PRCONS-IGM_igblast.tsv`
@@ -77,8 +79,19 @@ The following data files are referenced via `localify()` in `dnsmex/local_config
   - Used in: koenig, shanehsazzadeh, timing scripts
 
 - **ProGen2**: Required for ProGen2 benchmarks
-  - Setup instructions in `scripts/README_progen_setup.md`
-  - Used in: Shanehsazzadeh analysis (via pre-computed scores)
+  - **⚠️ IMPORTANT**: ProGen2 requires a separate Python environment due to incompatible dependencies
+  - Full setup instructions: [`scripts/README_progen_setup.md`](scripts/README_progen_setup.md)
+  - Quick setup (on GPU server):
+    ```bash
+    bash ~/re/dasm-experiments/scripts/setup_progen_env.sh
+    bash ~/re/dasm-experiments/scripts/setup_progen_scripts.sh
+    ```
+  - Creates isolated venv at `~/progen2/.venv` with old PyTorch/transformers versions
+  - Pre-computed ProGen2 scores are included in the repository for:
+    - `DATA_DIR/Koenig2017_g6_er.progen.csv`
+    - `DATA_DIR/Shanehsazzadeh2023_trastuzumab_zero_kd.progen2-small.csv`
+  - You can skip ProGen2 setup if using pre-computed scores
+  - To generate new scores: Use `scripts/flab_progen.py` in the ProGen2 environment
 
 ### Optional Dependencies
 - `tqdm` (progress bars)
