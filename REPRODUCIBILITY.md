@@ -61,8 +61,10 @@ cp dnsmex/local_config.py.template dnsmex/local_config.py
 - `README.md` - Detailed documentation
 
 **Original Sources**:
-- Base FLAb data: https://github.com/Graylab/FLAb
+- Base FLAb data: https://github.com/Graylab/FLAb (commit [67738ee](https://github.com/Graylab/FLAb/tree/67738eea4841a1777b73609d56ddfa39de8d7360), April 17, 2024)
 - ProGen2 scores: Generated using `scripts/flab_progen.py` (included for convenience)
+
+**Note**: The FLAb repository has continued to receive updates since the version we used. Our data is from the specific commit listed above to ensure reproducibility.
 
 #### Rodriguez Dataset (for perplexity analysis)
 - `DATA_DIR/loris/rodriguez-igm/W-117_PRCONS-IGM_igblast.tsv`
