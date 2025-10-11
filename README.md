@@ -57,6 +57,7 @@ This work uses benchmark and training data from the following sources:
 **Training datasets**:
 - [Tang et al. (2022)](http://dx.doi.org/10.1016/j.isci.2021.103668) - DeepSHM heavy chain sequences
 - [Engelbrecht et al. (2025)](https://www.biorxiv.org/content/10.1101/2025.05.28.656470v1.abstract) - Heavy and light chain sequences (kappa and lambda)
+- [Jaffe et al. (2022)](https://www.nature.com/articles/s41586-022-05371-z) - Paired heavy and light chain sequences
 - [Rodriguez et al. (2023)](https://www.nature.com/articles/s41467-023-40070-x) - RACE-seq data for perplexity analysis
 
 See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for complete data provenance and download instructions.

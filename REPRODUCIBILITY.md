@@ -33,12 +33,12 @@ This document ensures all files and dependencies are present for reproducing the
 
 Due to size constraints (~128 MB), benchmark data, training data, and Rodriguez perplexity data are distributed separately via Zenodo.
 
-**Zenodo DOI**: [To be added upon upload]
+**Zenodo DOI**: [10.5281/zenodo.17322891](https://doi.org/10.5281/zenodo.17322891)
 
 **Download and Setup**:
 ```bash
 # 1. Download from Zenodo
-wget https://zenodo.org/record/[RECORD_ID]/files/dasm-experiments-data.tar.gz
+wget https://zenodo.org/records/17322891/files/dasm-experiments-data.tar.gz
 
 # 2. Extract to your preferred location
 tar -xzf dasm-experiments-data.tar.gz
