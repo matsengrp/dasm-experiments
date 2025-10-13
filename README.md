@@ -4,6 +4,11 @@ This repository contains the code and data for reproducing the results presented
 
 **"Separating mutation from selection in antibody language models"** by Frederick A. Matsen IV, Will Dumm, Kevin Sung, Mackenzie M. Johnson, David Rich, Tyler Starr, Yun S. Song, Julia Fukuyama, Hugh K. Haddox
 
+## Using a pretrained Deep Amino acid Selection Model (DASM)
+
+If you simply wish to use the model described in our manuscript, that is available in the [pretrained](https://github.com/matsengrp/netam/blob/main/netam/pretrained.py) module of [netam](https://github.com/matsengrp/netam).
+See the [dasm_demo](https://github.com/matsengrp/netam/blob/main/notebooks/dasm_demo.ipynb) notebook for an example application.
+
 ## Installation
 
 First follow the instructions to do a developer install of [netam](https://github.com/matsengrp/netam) into a virtual environment (`venv` or `conda` both work).
