@@ -17,7 +17,7 @@ from .local import get_remote_config
 class RemoteESMEvaluator:
     """ESM model evaluator that runs on remote GPU servers."""
 
-    def __init__(self, model_size: str = "650M"):
+    def __init__(self, model_size: str = "3B"):
         self.model_size = model_size
         self.remote_config = get_remote_config()
 
@@ -359,6 +359,6 @@ with open(sys.argv[2], 'w') as f:
 """
 
 
-def get_remote_esm_evaluator(model_size: str = "650M"):
+def get_remote_esm_evaluator(model_size: str = "3B"):
     """Get remote ESM evaluator for specified model size."""
     return RemoteESMEvaluator(model_size)

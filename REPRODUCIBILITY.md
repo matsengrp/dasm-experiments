@@ -147,7 +147,7 @@ cp dnsmex/local_config.py.template dnsmex/local_config.py
 ## ⚠️ Notes
 
 - **Figure S7**: Multihit model exploration is in separate [`thrifty-experiments-1`](https://github.com/matsengrp/thrifty-experiments-1) repository
-- **Memory**: DASM models (~4M parameters) run on CPU; ESM2-650M benefits from GPU
+- **Memory**: DASM models (~4M parameters) run on CPU; ESM2-3B requires GPU with 16GB+ VRAM (A100 recommended)
 - **Troubleshooting**: Use `localify()` function to debug path resolution
 
 ## 📝 Citation
