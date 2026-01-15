@@ -15,7 +15,7 @@ from dnsmex.persistent_cache import cached_model_wrapper, get_global_cache
 class ESMSequenceEvaluator:
     """ESM model evaluator with VH+VL averaging following FLAb paper approach."""
 
-    def __init__(self, model_size: str = "650M"):
+    def __init__(self, model_size: str = "3B"):
         self.model_size = model_size
         self._esm_wrapper = None
 
@@ -95,11 +95,11 @@ class AbLangSequenceEvaluator:
 
 
 # Create cached versions of the model wrappers
-def get_cached_esm_wrapper(model_size: str = "650M", use_remote: bool = True):
+def get_cached_esm_wrapper(model_size: str = "3B", use_remote: bool = True):
     """Get cached ESM wrapper with specified model size.
 
     Args:
-        model_size: ESM model size (e.g., "650M")
+        model_size: ESM model size (e.g., "3B")
         use_remote: Whether to use remote GPU processing for faster inference
     """
     if use_remote:
