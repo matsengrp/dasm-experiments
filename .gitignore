@@ -63,3 +63,5 @@ logs/
 # Output files
 *.out
 *.err
+ISSUE-*.md
+_ignore/
