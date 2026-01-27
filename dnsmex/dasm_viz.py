@@ -23,7 +23,6 @@ from netam.sequences import (
 from netam.hit_class import parent_specific_hit_classes
 import netam.molevol as molevol
 
-
 PLOT_AA_ORDER = list("RKHDEQNSTYWFAILMVGPC")
 
 
@@ -209,7 +208,7 @@ def dms_style_heatmap(
             (data_min + data_max) / 2,
             data_max,
         )
-    (vmin, vcenter, vmax) = cb_min_center_max
+    vmin, vcenter, vmax = cb_min_center_max
     norm = TwoSlopeNorm(vmin=vmin, vcenter=vcenter, vmax=vmax)
     sm = ScalarMappable(norm=norm, cmap=cmap_lin)
 

@@ -22,8 +22,20 @@ wheels/
 
 # Virtual environments
 venv/
+.venv/
 ENV/
 env/
+
+# Beads task tracking
+.beads/
+AGENTS.md
+
+# Issue/plan drafts (not committed)
+ISSUE-*.md
+PLAN-*.md
+
+# Local ignore directories
+_ignore/
 
 # Jupyter Notebook
 .ipynb_checkpoints
