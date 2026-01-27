@@ -59,12 +59,18 @@ class AbLangSequenceEvaluator:
         if self._ablang_wrapper is None:
             import torch
 
-            # Set single thread for PyTorch to avoid slow parallel overhead
+            # Set single thread for PyTorch to avoid slow parallel overhead on CPU
             torch.set_num_threads(1)
-            print("Set PyTorch to single thread for AbLang")
 
-            # AbLang has issues with MPS, stick to CPU for now
-            self._ablang_wrapper = AbLangWrapper(device="cpu")
+            # Use CUDA if available, otherwise CPU (MPS has issues with AbLang)
+            if torch.cuda.is_available():
+                device = "cuda"
+                print(f"Using CUDA for AbLang")
+            else:
+                device = "cpu"
+                print(f"Using CPU for AbLang (CUDA not available)")
+
+            self._ablang_wrapper = AbLangWrapper(device=device)
         return self._ablang_wrapper
 
     def evaluate_antibodies(self, sequences: List[Tuple[str, str]]) -> List[float]:
