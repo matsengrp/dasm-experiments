@@ -6,7 +6,8 @@ This document ensures all files and dependencies are present for reproducing the
 
 ### Notebooks (all present in `notebooks/dasm_paper/`)
 - [x] `nt_process_in_llms.ipynb` → Figure 1 (nucleotide process in LLMs)
-- [x] `koenig.ipynb` → Table 1 & Figures 2, S1-S5 (Koenig et al. analysis)
+- [x] `koenig.ipynb` → Table 1 & Figures 2, S1-S5 (Koenig et al. analysis, true PPL)
+- [x] `koenig_masked_marginals.ipynb` → Figure 1c scatter plots (masked-marginals approach)
 - [x] `perplexity.ipynb` → Figure 3 (perplexity comparison)
 - [x] `shanehsazzadeh.ipynb` → Table 2 & Figure S6 (Shanehsazzadeh et al. analysis)
 - [x] `data_summaries.ipynb` → Table S1 (dataset summaries)
