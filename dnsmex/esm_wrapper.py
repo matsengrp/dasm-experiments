@@ -59,7 +59,16 @@ class ESMWrapper:
         return logits
 
     def masked_logits(self, seq):
-        """Gets masked logits by masking each position one at a time."""
+        """Gets masked logits by masking each position one at a time.
+
+        This is the first step of masked-marginals pseudo-perplexity:
+        compute p(a | seq_{\\i}) for all amino acids a at each position i.
+
+        When called with a wild-type sequence, these logits can be reused
+        to score any variant using the WT context (masked-marginals approach),
+        rather than recomputing logits for each variant in its own context
+        (true pseudo-perplexity).
+        """
         _, _, batch_tokens = self.batch_converter([("protein1", seq)])
         batch_tokens = batch_tokens.to(self.device)
 
