@@ -11,7 +11,7 @@ import os
 
 CONFIG = {
     # Data and output directories
-    "DATA_DIR": "~/data",
+    "DATA_DIR": "~/data/dasm-experiments-data",
     "MISC": "~/data/misc",
     "SABDAB": "~/sabdab",
     "FIGURES_DIR": "~/writing/talks/figures/bcr-mut-sel/",

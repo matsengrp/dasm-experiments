@@ -51,10 +51,19 @@ class AbLangWrapper:
         """Computes the stepwise masked logits for given heavy and light chain
         sequences.
 
+        This is the first step of masked-marginals pseudo-perplexity:
+        compute p(a | seq_{\\i}) for all amino acids a at each position i.
+
+        When called with a wild-type sequence, these logits can be reused
+        to score any variant using the WT context (masked-marginals approach),
+        rather than recomputing logits for each variant in its own context
+        (true pseudo-perplexity).
+
         Args:
             heavy_seq (str): The heavy chain sequence.
             light_seq (str): The light chain sequence.
             split (bool): Whether to return the logits for the heavy and light chains separately.
+            stepwise_masking (bool): Whether to mask each position one at a time.
 
         Returns:
             torch.Tensor: A 2D tensor of logits with rows corresponding to amino acids
